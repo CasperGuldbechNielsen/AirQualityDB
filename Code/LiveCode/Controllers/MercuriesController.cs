@@ -17,7 +17,7 @@ namespace LiveCode.Controllers
         // GET: Mercuries
         public ActionResult Index()
         {
-            return View(db.Mercuries.ToList());
+            return View(db.Mercuries.ToList().Take(150));
         }
 
         // GET: Mercuries/Details/5
