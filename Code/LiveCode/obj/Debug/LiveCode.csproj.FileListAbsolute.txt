@@ -137,6 +137,5 @@ E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\LiveCode\bin\Microsoft.AI.Depe
 E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\LiveCode\bin\Microsoft.AI.ServerTelemetryChannel.xml
 E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\LiveCode\bin\Microsoft.AI.WindowsServer.xml
 E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\LiveCode\bin\Microsoft.AI.Web.xml
-E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\LiveCode\obj\Debug\LiveCode.csprojResolveAssemblyReference.cache
 E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\LiveCode\obj\Debug\LiveCode.dll
 E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\LiveCode\obj\Debug\LiveCode.pdb
