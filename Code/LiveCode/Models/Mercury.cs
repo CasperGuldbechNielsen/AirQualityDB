@@ -14,7 +14,7 @@ namespace LiveCode.Models
 
         [Column(TypeName = "date")]
         [Display(Name = "Measurements Taken")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:f}, dt")]
         public DateTime DateTimeStart { get; set; }
 
         [Display(Name = "Mercury (Hg)")]

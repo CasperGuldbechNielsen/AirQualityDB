@@ -18,7 +18,12 @@ namespace LiveCode.Controllers
         //Only take the first 150 rows so that the app will be faster
         public ActionResult Index()
         {
-            return View(db.Mercuries.ToList().Take(150));
+            //separate data entities for chart visualization
+            var entities = db.Mercuries.ToList().Take(150);
+            
+            return View(entities);
+
+
         }
 
         // GET: Mercuries/Details/5
@@ -116,6 +121,33 @@ namespace LiveCode.Controllers
             return RedirectToAction("Index");
         }
 
+        /*
+        public ActionResult Charts()
+        {
+
+            //getting datestamp for axis X
+            var entities = db.Mercuries.ToList().Take(150);
+            List<string> TimeStamps = new List<string>();
+            List<string> MercuryHg = new List<string>();
+
+
+            foreach (var d in entities)
+            {
+                TimeStamps.Add(d.DateTimeStart.ToString("d"));
+            }
+
+            foreach (var m in entities)
+            {
+                MercuryHg.Add(m.Hg.ToString());
+            }
+
+            ViewBag.Timestamps = TimeStamps;
+            ViewBag.MercuryHgs = MercuryHg;
+
+            return View();
+
+        }
+        */
         protected override void Dispose(bool disposing)
         {
             if (disposing)

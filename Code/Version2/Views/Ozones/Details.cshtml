@@ -1,0 +1,42 @@
+﻿@model Version2.Models.Ozone
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Ozone</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DateTimeStart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateTimeStart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ozone1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ozone1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Unit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Unit)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Ozone_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
