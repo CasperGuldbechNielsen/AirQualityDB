@@ -13,8 +13,11 @@ namespace LiveCode.Models
         public int Mercury_Id { get; set; }
 
         [Column(TypeName = "date")]
+        [Display(Name = "Measurements Taken")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime DateTimeStart { get; set; }
 
+        [Display(Name = "Mercury (Hg)")]
         public double? Hg { get; set; }
 
         [Required]
