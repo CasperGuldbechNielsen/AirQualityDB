@@ -121,33 +121,6 @@ namespace LiveCode.Controllers
             return RedirectToAction("Index");
         }
 
-        /*
-        public ActionResult Charts()
-        {
-
-            //getting datestamp for axis X
-            var entities = db.Mercuries.ToList().Take(150);
-            List<string> TimeStamps = new List<string>();
-            List<string> MercuryHg = new List<string>();
-
-
-            foreach (var d in entities)
-            {
-                TimeStamps.Add(d.DateTimeStart.ToString("d"));
-            }
-
-            foreach (var m in entities)
-            {
-                MercuryHg.Add(m.Hg.ToString());
-            }
-
-            ViewBag.Timestamps = TimeStamps;
-            ViewBag.MercuryHgs = MercuryHg;
-
-            return View();
-
-        }
-        */
         protected override void Dispose(bool disposing)
         {
             if (disposing)
