@@ -15,9 +15,15 @@ namespace LiveCode.Controllers
         private AirDataModel db = new AirDataModel();
 
         // GET: Mercuries
+        //Only take the first 150 rows so that the app will be faster
         public ActionResult Index()
         {
-            return View(db.Mercuries.ToList());
+            //separate data entities for chart visualization
+            var entities = db.Mercuries.ToList().Take(150);
+            
+            return View(entities);
+
+
         }
 
         // GET: Mercuries/Details/5
