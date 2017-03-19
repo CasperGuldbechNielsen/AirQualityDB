@@ -4,18 +4,76 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Mercury Measurments</h2>
+
+
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+
 <script>
+    /*
     $.getJSON('http://sql2json.azurewebsites.net/api/Mercuries', function(data) {
-        console.log('It worked');
+        console.log(data);
     });
+    */
+
+    var axisX = [];
+    var axisY = [];
+
+    function drawLineChart() {
+
+        $.ajax({
+            url: 'http://sql2json.azurewebsites.net/api/Mercuries',
+            dataType: 'json',
+            type: 'get',
+            cache: false,
+            success: function (data) {
+                $(data).each(function (index, value) {
+                    axisX.push(value.dateTimeStart);
+                    axisY.push(value.hg);
+                });
+            }
+
+        });
+
+
+        // Create the chart.js data structure using 'labels' and 'data'
+
+        var tempData = {
+            labels: axisX,
+            datasets: [
+                {
+                    fillColor: "rgba(151,187,205,0.2)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    pointColor: "rgba(151,187,205,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
+                    data: axisY
+                }
+            ]
+        };
+
+        // Get the context of the canvas element we want to select
+        var ctx = document.getElementById("myLineChart");
+
+        // Instantiate a new chart
+        var myLineChart = new Chart(ctx).Line(tempData);
+
+    }
+
+    drawLineChart();
 </script>
 
+<h1>Mercury Measurments in Chart.JS using JSON from ASP.NET Core API</h1>
+
+<canvas id="myLineChart" width="740" height="200"></canvas>
 
 
 
+<h2>Mercury Measurments In Table format</h2>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
