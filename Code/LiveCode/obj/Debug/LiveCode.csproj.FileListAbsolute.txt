@@ -69,6 +69,7 @@ E:\ZIBAT\4th sem\Databases\livecode\LiveCode\LiveCode\bin\Microsoft.AI.Web.xml
 E:\ZIBAT\4th sem\Databases\livecode\LiveCode\LiveCode\obj\Debug\LiveCode.csprojResolveAssemblyReference.cache
 E:\ZIBAT\4th sem\Databases\livecode\LiveCode\LiveCode\obj\Debug\LiveCode.dll
 E:\ZIBAT\4th sem\Databases\livecode\LiveCode\LiveCode\obj\Debug\LiveCode.pdb
+E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\LiveCode\bin\ApplicationInsights.config
 E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\LiveCode\bin\roslyn\csc.exe
 E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\LiveCode\bin\roslyn\csc.exe.config
 E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\LiveCode\bin\roslyn\csc.rsp
@@ -95,7 +96,6 @@ E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\LiveCode\bin\roslyn\vbc.exe.co
 E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\LiveCode\bin\roslyn\vbc.rsp
 E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\LiveCode\bin\roslyn\VBCSCompiler.exe
 E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\LiveCode\bin\roslyn\VBCSCompiler.exe.config
-E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\LiveCode\bin\ApplicationInsights.config
 E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\LiveCode\bin\LiveCode.dll.config
 E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\LiveCode\bin\LiveCode.dll
 E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\LiveCode\bin\LiveCode.pdb
@@ -137,6 +137,5 @@ E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\LiveCode\bin\Microsoft.AI.Depe
 E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\LiveCode\bin\Microsoft.AI.ServerTelemetryChannel.xml
 E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\LiveCode\bin\Microsoft.AI.WindowsServer.xml
 E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\LiveCode\bin\Microsoft.AI.Web.xml
-E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\LiveCode\obj\Debug\LiveCode.csprojResolveAssemblyReference.cache
 E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\LiveCode\obj\Debug\LiveCode.dll
 E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\LiveCode\obj\Debug\LiveCode.pdb

@@ -1,0 +1,9 @@
+E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\ASPNETCOREJSON\bin\Debug\netcoreapp1.1\ASPNETCOREJSON.deps.json
+E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\ASPNETCOREJSON\bin\Debug\netcoreapp1.1\ASPNETCOREJSON.runtimeconfig.json
+E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\ASPNETCOREJSON\bin\Debug\netcoreapp1.1\ASPNETCOREJSON.runtimeconfig.dev.json
+E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\ASPNETCOREJSON\bin\Debug\netcoreapp1.1\ASPNETCOREJSON.dll
+E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\ASPNETCOREJSON\bin\Debug\netcoreapp1.1\ASPNETCOREJSON.pdb
+E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\ASPNETCOREJSON\obj\Debug\netcoreapp1.1\ASPNETCOREJSON.csprojResolveAssemblyReference.cache
+E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\ASPNETCOREJSON\obj\Debug\netcoreapp1.1\ASPNETCOREJSON.AssemblyInfo.cs
+E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\ASPNETCOREJSON\obj\Debug\netcoreapp1.1\ASPNETCOREJSON.dll
+E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\ASPNETCOREJSON\obj\Debug\netcoreapp1.1\ASPNETCOREJSON.pdb
