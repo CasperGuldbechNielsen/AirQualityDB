@@ -12,6 +12,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
 
+<h1>Mercury Measurments in Chart.JS using JSON from ASP.NET Core API</h1>
+
+<canvas id="canvas" width="740" height="200"></canvas>
+
 <script>
     /*
     $.getJSON('http://sql2json.azurewebsites.net/api/Mercuries', function(data) {
@@ -57,21 +61,27 @@
         };
 
         // Get the context of the canvas element we want to select
-        var ctx = document.getElementById("myLineChart");
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
 
         // Instantiate a new chart
-        var myLineChart = new Chart(ctx).Line(tempData);
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: tempData,
+            options: {
+                scales: {
+                    xAxes: [{
+                        display: true
+                    }]
+                }
+            }
+            
+        });
 
     }
 
     drawLineChart();
 </script>
-
-<h1>Mercury Measurments in Chart.JS using JSON from ASP.NET Core API</h1>
-
-<canvas id="myLineChart" width="740" height="200"></canvas>
-
-
 
 <h2>Mercury Measurments In Table format</h2>
 <p>
