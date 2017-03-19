@@ -32,6 +32,18 @@ namespace ASPNETCOREJSON
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            //Allow cross domain calls (our client asp web app in this case)
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials());
+            });
+
+
             // Add framework services.
             services.AddMvc()
                     .AddJsonOptions(a => a.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
@@ -48,6 +60,7 @@ namespace ASPNETCOREJSON
                 options => options.UseSqlServer(connection));
 
             services.AddSingleton<IMercuriesRepository, MercuriesRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

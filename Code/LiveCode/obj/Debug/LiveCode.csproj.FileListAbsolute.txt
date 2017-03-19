@@ -139,3 +139,4 @@ E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\LiveCode\bin\Microsoft.AI.Wind
 E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\LiveCode\bin\Microsoft.AI.Web.xml
 E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\LiveCode\obj\Debug\LiveCode.dll
 E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\LiveCode\obj\Debug\LiveCode.pdb
+E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\LiveCode\obj\Debug\LiveCode.csprojResolveAssemblyReference.cache
