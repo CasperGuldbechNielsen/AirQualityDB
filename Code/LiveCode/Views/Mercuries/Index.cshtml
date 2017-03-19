@@ -4,8 +4,143 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Mercury Measurments</h2>
 
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+
+<h1>Chart.JS using JSON</h1>
+
+<canvas id="canvas"></canvas>
+
+
+
+<script>
+
+
+    var Yaxis = [];
+    var Xaxis = [];
+
+        function drawLineChart() {
+
+            $.ajax({
+                url: 'http://sql2json.azurewebsites.net/api/Mercuries',
+                dataType: 'json',
+                type: 'get',
+                cache: true,
+                success: function(data) {
+                    $(data).each(function (index, value) {
+                        //console.log(value.hg);
+                        //console.log(value.mercury_Id);
+                        //Yaxis.push(parseFloat(value.hg));
+                        //Xaxis.push(new Date(value.dateTimeStart).toString());
+                        //Xaxis.push(parseInt(value.mercury_Id));
+                        Yaxis.push(value.hg);
+                        Xaxis.push(value.mercury_Id);
+
+                    });
+
+                    //TODO: Can't fix this!!!'
+                    //In browser developer mode (press F12, select console tab/window) => it proves that we successfully passing an array both cases!
+                    console.log(Xaxis);
+                    console.log(Yaxis);
+                } 
+                
+            });
+
+            // Create the chart.js data structure using 'labels' and 'data'
+
+            var tempData = {
+                //TODO: Can't fix this!!!'
+                //In case I copy+paste the array from console log window, it shows the charts perfectly!!!
+                //labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50],
+                labels: Xaxis,
+                datasets: [
+                    {
+                        label: "Mercury in ng/m3 Units",
+                        fill: true,
+                        backgroundColor: "#eebcde",
+                        borderColor: "#eebcde",
+                        borderCapStyle: 'butt',
+                        borderDash: [5, 5],
+                        fillColor: "rgba(151,187,205,0.2)",
+                        strokeColor: "rgba(151,187,205,1)",
+                        pointColor: "rgba(151,187,205,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(151,187,205,1)",
+
+                        //TODO: Cant't fix this!!!'
+                        // data: [1.36293483,1.24647653,1.24888647,1.20377707,1.305359,1.03976488,1.23476017,1.29017937,1.23507214,1.20085585,1.21477127,1.28440213,1.26192391,1.084213,1.28880155,1.237179,1.21443236,1.28502584,1.23765,1.2417053,1.21862483,1.27369058,1.24834383,1.31803858,1.22704113,1.27334154,1.22164917,1.21766233,1.11021578,1.242275,1.18841147,1.05999637,1.21983314,1.28930652,1.20057487,1.15125084,1.188892,1.28811085,1.24496019,1.26047826,1.22302043,1.252339,1.27618313,1.18802941,1.280756,1.23258233,1.28541172,1.30332732,1.2269274,1.251279],
+                        data: Yaxis
+                    }
+                ]
+            };
+
+            // Get the context of the canvas element we want to select
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+
+            // Instantiate a new chart
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: tempData,
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'bottom'
+                    },
+                    hover: {
+                        mode: 'label'
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            ticks: {
+                                beginAtZero: true,
+                                steps: 1,
+                                stepValue: 1,
+                                max: 50
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Time'
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            ticks: {
+                                beginAtZero: true,
+                                steps: 1,
+                                stepValue: 1,
+                                max: 3
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'ng/m3'
+                            }
+                        }]
+                    },
+                    title: {
+                        display: true,
+                        text: 'Line Chart'
+                    }
+                }
+
+            });
+
+        }
+
+        drawLineChart();
+
+    </script>
+
+
+
+<h2>Mercury Measurments In Table format</h2>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>

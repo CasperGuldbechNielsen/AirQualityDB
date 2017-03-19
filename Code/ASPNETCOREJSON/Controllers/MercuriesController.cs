@@ -23,7 +23,7 @@ namespace ASPNETCOREJSON.Controllers
         [HttpGet]
         public IEnumerable<Mercury> GetAll()
         {
-            return MercuriesRepo.GetAll();
+            return MercuriesRepo.GetAll().Take(50);
         }
 
         [HttpGet("{id}", Name = "GetMercuries")]
