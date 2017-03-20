@@ -1,0 +1,323 @@
+﻿@model IEnumerable<LiveCode.Models.Ozone>
+
+@{
+    ViewBag.Title = "Ozone";
+}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+
+<h1>Chart.JS using JSON</h1>
+
+<canvas id="canvas"></canvas><br />
+
+<h1>Mixed chart with Mercury + Ozone</h1>
+
+<canvas id="canvas2"></canvas>
+
+<script>
+    
+    var Yaxis = [];
+    var Xaxis = [];
+
+    function drawLineChart() {
+
+        $.ajaxSetup({ async: false });
+        $.ajax({
+            url: 'http://sql2json.azurewebsites.net/api/Ozones',
+            dataType: 'json',
+            type: 'get',
+            cache: true,
+            success: function (data) {
+                $(data).each(function (index, value) {
+                    //console.log(value.hg);
+                    //console.log(value.mercury_Id);
+                    //Yaxis.push(parseFloat(value.hg));
+                    //Xaxis.push(new Date(value.dateTimeStart).toString());
+                    //Xaxis.push(parseInt(value.mercury_Id));
+                    Yaxis.push(value.ozone1);
+                    Xaxis.push(value.ozone_Id);
+
+                });
+
+
+                console.log(Xaxis);
+                console.log(Yaxis);
+            }
+
+        });
+
+        // Create the chart.js data structure using 'labels' and 'data'
+
+        var tempData = {
+
+            labels: Xaxis,
+            datasets: [
+                {
+                    label: "Ozone in ppb Units",
+                    fill: true,
+                    backgroundColor: "#4daab5",
+                    borderColor: "#4daab5",
+                    borderCapStyle: 'butt',
+                    borderDash: [5, 5],
+                    fillColor: "rgba(77, 170, 181, 0.43)",
+                    strokeColor: "rgba(77, 170, 181, 1)",
+                    pointColor: "rgba(77, 170, 181, 1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(77, 170, 181, 1)",
+
+                    data: Yaxis
+                }
+            ]
+        };
+
+        // Get the context of the canvas element we want to select
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+
+        // Instantiate a new chart
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: tempData,
+            options: {
+                responsive: true,
+                legend: {
+                    position: 'bottom'
+                },
+                hover: {
+                    mode: 'label'
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        ticks: {
+                            beginAtZero: true,
+                            steps: 1,
+                            stepValue: 1,
+                            max: 50
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Time'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        ticks: {
+                            beginAtZero: true,
+                            steps: 20,
+                            stepValue: 2.5,
+                            max: 50
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'ppb'
+                        }
+                    }]
+                },
+                title: {
+                    display: true,
+                    text: 'Line Chart'
+                }
+            }
+
+        });
+
+    }
+
+    drawLineChart();
+
+
+</script>
+
+<script>
+
+    var Yaxis = [];
+    var Xaxis = [];
+    var secondXaxis = [];
+
+    function drawLineChart() {
+
+        $.ajaxSetup({ async: false });
+        $.ajax({
+            url: 'http://sql2json.azurewebsites.net/api/Ozones',
+            dataType: 'json',
+            type: 'get',
+            cache: true,
+            success: function (data) {
+                $(data).each(function (index, value) {
+                    //console.log(value.hg);
+                    //console.log(value.mercury_Id);
+                    //Yaxis.push(parseFloat(value.hg));
+                    //Xaxis.push(new Date(value.dateTimeStart).toString());
+                    //Xaxis.push(parseInt(value.mercury_Id));
+                    Yaxis.push(value.ozone1);
+                    Xaxis.push(value.ozone_Id);
+
+                });
+                    console.log(Xaxis);
+                    console.log(Yaxis);
+                }
+
+            });
+
+       
+
+            $.ajaxSetup({ async: false });
+            $.ajax({
+                url: 'http://sql2json.azurewebsites.net/api/Mercuries',
+                dataType: 'json',
+                type: 'get',
+                cache: true,
+                success: function (data) {
+                    $(data).each(function (index, value) {
+                        secondXaxis.push(value.hg);
+                    });
+                }
+
+            });
+
+       
+
+        var tempData = {
+
+            labels: Xaxis,
+            datasets: [
+                {
+                    label: "Ozone in ppb Units",
+                    fill: true,
+                    backgroundColor: "rgba(77, 170, 181, 0.43)",
+                    borderColor: "rgba(77, 170, 181, 1)",
+                    borderCapStyle: 'butt',
+                    borderDash: [5, 5],
+                    fillColor: "rgba(77, 170, 181, 0.43)",
+                    strokeColor: "rgba(77, 170, 181, 1)",
+                    pointColor: "rgba(77, 170, 181, 1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(77, 170, 181, 1)",
+
+                    data: Yaxis
+                },
+                {
+                    label: "Mercury in ng/m3 Units",
+                    fill: true,
+                    backgroundColor: "#eebcde",
+                    borderColor: "#eebcde",
+                    borderCapStyle: 'butt',
+                    borderDash: [5, 5],
+                    fillColor: "rgba(151,187,205,0.2)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    pointColor: "rgba(151,187,205,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
+
+                    data: secondXaxis
+                }
+            ]
+        };
+
+        // Get the context of the canvas element we want to select
+        var canvas2 = document.getElementById("canvas2");
+        var ctx = canvas2.getContext("2d");
+
+        // Instantiate a new chart
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: tempData,
+            options: {
+                responsive: true,
+                legend: {
+                    position: 'bottom'
+                },
+                hover: {
+                    mode: 'label'
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        ticks: {
+                            beginAtZero: true,
+                            steps: 1,
+                            stepValue: 1,
+                            max: 50
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Time'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        ticks: {
+                            beginAtZero: true,
+                            steps: 200,
+                            stepValue: 1,
+                            max: 45
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'ppb & ngm3'
+                        }
+                    }]
+                },
+                title: {
+                    display: true,
+                    text: 'Both Values'
+                }
+            }
+
+        });
+
+    }
+
+    drawLineChart();
+
+
+</script>
+
+
+
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DateTimeStart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ozone1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Unit)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateTimeStart)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ozone1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Unit)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Ozone_Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Ozone_Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Ozone_Id })
+        </td>
+    </tr>
+}
+
+</table>
