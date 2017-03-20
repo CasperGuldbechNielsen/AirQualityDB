@@ -50,6 +50,7 @@ namespace ASPNETCOREJSON.Repository
             {
                 _context.Mercury.Remove(itemToRemove);
             }
+            _context.SaveChanges();
 
         }
 
@@ -72,6 +73,7 @@ namespace ASPNETCOREJSON.Repository
                 itemToUpdate.Hg = mercuryEntry.Hg;
                 itemToUpdate.Unit = mercuryEntry.Unit;
             }
+            _context.SaveChanges();
         }
     }
 }

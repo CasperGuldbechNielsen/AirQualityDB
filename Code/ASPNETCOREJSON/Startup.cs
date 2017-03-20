@@ -57,9 +57,13 @@ namespace ASPNETCOREJSON
             //var connection = @"Server=(localdb)\mssqllocaldb;Database=AirQualityV2;Trusted_Connection=True;";
 
             services.AddDbContext<MercuriesContext>(
+                options => options.UseSqlServer(connection))
+                .AddDbContext<OzonesContext>(
                 options => options.UseSqlServer(connection));
+            
 
             services.AddSingleton<IMercuriesRepository, MercuriesRepository>();
+            services.AddSingleton<IOzonesRepository, OzonesRepository>();
 
         }
 
