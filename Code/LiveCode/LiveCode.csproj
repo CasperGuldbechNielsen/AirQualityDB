@@ -151,6 +151,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MercuriesController.cs" />
+    <Compile Include="Controllers\OzonesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -209,6 +210,11 @@
     <Content Include="Views\Mercuries\Details.cshtml" />
     <Content Include="Views\Mercuries\Edit.cshtml" />
     <Content Include="Views\Mercuries\Index.cshtml" />
+    <Content Include="Views\Ozones\Create.cshtml" />
+    <Content Include="Views\Ozones\Delete.cshtml" />
+    <Content Include="Views\Ozones\Details.cshtml" />
+    <Content Include="Views\Ozones\Edit.cshtml" />
+    <Content Include="Views\Ozones\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
