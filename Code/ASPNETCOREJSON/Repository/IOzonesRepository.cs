@@ -6,7 +6,7 @@ using ASPNETCOREJSON.Models;
 
 namespace ASPNETCOREJSON.Repository
 {
-    interface IOzonesRepository
+    public interface IOzonesRepository
     {
         void Add(Ozone ozoneEntry);
         IEnumerable<Ozone> GetAll();
