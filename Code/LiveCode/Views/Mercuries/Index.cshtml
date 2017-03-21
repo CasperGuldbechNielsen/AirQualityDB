@@ -7,57 +7,64 @@
 
 
 
-
+@*Referencing jQuery and ChartJS in order to render the charts (the browser needs it to compile the scripts)*@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
 
 <h1>Chart.JS using JSON</h1>
 
+@*Canvas (Will be referenced during the rendering via it's id)*@
 <canvas id="canvas"></canvas>
 
 
-
+@*The script (Javascript&jQuery together, the code to render the chart)*@
 <script>
 
-
+    //Two Arrays to hold the Json data
     var Yaxis = [];
     var Xaxis = [];
 
+        //This function will be called later on
         function drawLineChart() {
 
-            $.ajaxSetup({ async: false});
-            $.ajax({
-                url: 'http://sql2json.azurewebsites.net/api/Mercuries',
-                dataType: 'json',
-                type: 'get',
-                cache: true,
-                success: function(data) {
-                    $(data).each(function (index, value) {
-                        //console.log(value.hg);
-                        //console.log(value.mercury_Id);
-                        //Yaxis.push(parseFloat(value.hg));
-                        //Xaxis.push(new Date(value.dateTimeStart).toString());
-                        //Xaxis.push(parseInt(value.mercury_Id));
-                        Yaxis.push(value.hg);
-                        Xaxis.push(value.dateTimeStart);
-
-                    });
-
-                    
-                    console.log(Xaxis);
-                    console.log(Yaxis);
-                } 
-                
+            //This is an AJAX call to the API to get the JSON
+            $.ajaxSetup({
+                 async: false
             });
 
+                $.ajax({
+                    url: 'http://sql2json.azurewebsites.net/api/Mercuries',
+                    dataType: 'json',
+                    type: 'get',
+                    cache: true,
+                    //If the call successful, do the following:
+                    success: onSuccess,
+                    //In case of error do the this instead:
+                    error: onErrorCall
+                });
+
+            //The function to be fired in case of success
+            function onSuccess(response) {
+                //Foreach loop to push the values to the Array objects
+                    $(response).each(function (index, value) {
+                        Yaxis.push(value.hg);
+                        Xaxis.push(value.dateTimeStart);
+                    });
+            } 
+
+            function onErrorCall(response) {
+                alert('The server is too busy to serve your request, please try again later some time!');
+            }
             // Create the chart.js data structure using 'labels' and 'data'
 
+            //Hold this values in this variable 'tempdata'
             var tempData = {
                 
                 labels: Xaxis,
                 datasets: [
                     {
+                        //CharrJS styleing
                         label: "Mercury in ng/m3 Units",
                         fill: true,
                         backgroundColor: "#eebcde",
@@ -77,11 +84,10 @@
             };
 
             // Get the context of the canvas element we want to select
-            var canvas = document.getElementById("canvas");
-            var ctx = canvas.getContext("2d");
+            var canvas = document.getElementById("canvas").getContext("2d");
 
             // Instantiate a new chart
-            var myChart = new Chart(ctx, {
+            var myChart = new Chart(canvas, {
                 type: 'bar',
                 data: tempData,
                 options: {
@@ -137,13 +143,13 @@
             });
 
         }
-
+    //Call the function finally to draw the chart:
         drawLineChart();
 
     </script>
 
 
-
+@*This is just scaffolded by asp.net web app, showing the measurements data in tables*@
 <h2>Mercury Measurments In Table format</h2>
 <p>
     @Html.ActionLink("Create New", "Create")
