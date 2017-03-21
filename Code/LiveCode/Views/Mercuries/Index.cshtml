@@ -87,10 +87,18 @@
                 options: {
                     responsive: true,
                     legend: {
-                        position: 'bottom'
+                        position: 'bottom',
+                        labels: {
+                            fontColor: 'rgb(255, 99, 132)'
+                        }
                     },
                     hover: {
                         mode: 'label'
+                    },
+
+                    animation: {
+                        duration: 8000,
+                        numSteps: 50
                     },
                     scales: {
                         xAxes: [{
@@ -102,7 +110,7 @@
                                 max: 50
                             },
                             scaleLabel: {
-                                display: true,
+                                display: false,
                                 labelString: 'Time'
                             }
                         }],
