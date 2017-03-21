@@ -40,7 +40,7 @@
                         //Xaxis.push(new Date(value.dateTimeStart).toString());
                         //Xaxis.push(parseInt(value.mercury_Id));
                         Yaxis.push(value.hg);
-                        Xaxis.push(value.mercury_Id);
+                        Xaxis.push(value.dateTimeStart);
 
                     });
 
@@ -82,7 +82,7 @@
 
             // Instantiate a new chart
             var myChart = new Chart(ctx, {
-                type: 'line',
+                type: 'bar',
                 data: tempData,
                 options: {
                     responsive: true,
