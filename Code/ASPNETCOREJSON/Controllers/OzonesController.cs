@@ -23,7 +23,7 @@ namespace ASPNETCOREJSON.Controllers
         [HttpGet]
         public IEnumerable<Ozone> GetAll()
         {
-            return OzonesRepo.GetAll().Take(50);
+            return OzonesRepo.GetAll().Take(500);
         }
 
         [HttpGet("{id}", Name = "GetOzones")]

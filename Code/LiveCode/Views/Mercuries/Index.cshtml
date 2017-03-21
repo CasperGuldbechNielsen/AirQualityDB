@@ -7,143 +7,149 @@
 
 
 
-
+@*Referencing jQuery and ChartJS in order to render the charts (the browser needs it to compile the scripts)*@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
 
 <h1>Chart.JS using JSON</h1>
 
+@*Canvas (Will be referenced during the rendering via it's id)*@
 <canvas id="canvas"></canvas>
 
 
-
+@*The script (Javascript&jQuery together, the code to render the chart)*@
 <script>
 
-
+    //Two Arrays to hold the Json data
     var Yaxis = [];
     var Xaxis = [];
 
-        function drawLineChart() {
+    //This function will be called later on Line147
+    function drawLineChart() {
 
-            $.ajaxSetup({ async: false});
-            $.ajax({
-                url: 'http://sql2json.azurewebsites.net/api/Mercuries',
-                dataType: 'json',
-                type: 'get',
-                cache: true,
-                success: function(data) {
-                    $(data).each(function (index, value) {
-                        //console.log(value.hg);
-                        //console.log(value.mercury_Id);
-                        //Yaxis.push(parseFloat(value.hg));
-                        //Xaxis.push(new Date(value.dateTimeStart).toString());
-                        //Xaxis.push(parseInt(value.mercury_Id));
-                        Yaxis.push(value.hg);
-                        Xaxis.push(value.mercury_Id);
+        //This is an AJAX call to the API to get the JSON
+        $.ajaxSetup({
+            async: false
+        });
 
-                    });
+        $.ajax({
+            url: 'http://sql2json.azurewebsites.net/api/Mercuries',
+            dataType: 'json',
+            type: 'get',
+            cache: true,
+            //If the call successful, do the following:
+            success: onSuccess,
+            //In case of error do the this instead:
+            error: onErrorCall
+        });
 
-                    
-                    console.log(Xaxis);
-                    console.log(Yaxis);
-                } 
-                
+        //The function to be fired in case of success
+        function onSuccess(response) {
+        //Foreach loop to push the values to the Array objects
+            $(response).each(function (index, value) {
+                Yaxis.push(value.hg);
+                Xaxis.push(value.dateTimeStart);
             });
-
-            // Create the chart.js data structure using 'labels' and 'data'
-
-            var tempData = {
-                
-                labels: Xaxis,
-                datasets: [
-                    {
-                        label: "Mercury in ng/m3 Units",
-                        fill: true,
-                        backgroundColor: "#eebcde",
-                        borderColor: "#eebcde",
-                        borderCapStyle: 'butt',
-                        borderDash: [5, 5],
-                        fillColor: "rgba(151,187,205,0.2)",
-                        strokeColor: "rgba(151,187,205,1)",
-                        pointColor: "rgba(151,187,205,1)",
-                        pointStrokeColor: "#fff",
-                        pointHighlightFill: "#fff",
-                        pointHighlightStroke: "rgba(151,187,205,1)",
-
-                        data: Yaxis
-                    }
-                ]
-            };
-
-            // Get the context of the canvas element we want to select
-            var canvas = document.getElementById("canvas");
-            var ctx = canvas.getContext("2d");
-
-            // Instantiate a new chart
-            var myChart = new Chart(ctx, {
-                type: 'line',
-                data: tempData,
-                options: {
-                    responsive: true,
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            fontColor: 'rgb(255, 99, 132)'
-                        }
-                    },
-                    hover: {
-                        mode: 'label'
-                    },
-
-                    animation: {
-                        duration: 8000,
-                        numSteps: 50
-                    },
-                    scales: {
-                        xAxes: [{
-                            display: true,
-                            ticks: {
-                                beginAtZero: true,
-                                steps: 1,
-                                stepValue: 1,
-                                max: 50
-                            },
-                            scaleLabel: {
-                                display: false,
-                                labelString: 'Time'
-                            }
-                        }],
-                        yAxes: [{
-                            display: true,
-                            ticks: {
-                                beginAtZero: true,
-                                steps: 1,
-                                stepValue: 1,
-                                max: 3
-                            },
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'ng/m3'
-                            }
-                        }]
-                    },
-                    title: {
-                        display: true,
-                        text: 'Line Chart'
-                    }
-                }
-
-            });
-
         }
+        //In case of error put out an alertbox
+        function onErrorCall(response) {
+            alert('The server is too busy to serve your request, please try again later some time!');
+        }
+        // Create the chart.js data structure using 'labels' and 'data'
 
-        drawLineChart();
+        //Hold this values in this variable 'tempdata'
+        var tempData = {
 
-    </script>
+            labels: Xaxis,
+            datasets: [
+                {
+                    //CharrJS styling
+                    label: "Mercury in ng/m3 Units",
+                    fill: true,
+                    backgroundColor: "#eebcde",
+                    borderColor: "#eebcde",
+                    borderCapStyle: 'butt',
+                    borderDash: [5, 5],
+                    fillColor: "rgba(151,187,205,0.2)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    pointColor: "rgba(151,187,205,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
+
+                    data: Yaxis
+                }
+            ]
+        };
+
+        // Get the context of the canvas element we want to select
+        var canvas = document.getElementById("canvas").getContext("2d");
+
+        // Instantiate a new chart
+        var myChart = new Chart(canvas, {
+            type: 'bar',
+            data: tempData,
+            options: {
+                responsive: true,
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        fontColor: 'rgb(255, 99, 132)'
+                    }
+                },
+                hover: {
+                    mode: 'label'
+                },
+
+                animation: {
+                    duration: 8000,
+                    numSteps: 50
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        ticks: {
+                            beginAtZero: true,
+                            steps: 1,
+                            stepValue: 1,
+                            max: 50
+                        },
+                        scaleLabel: {
+                            display: false,
+                            labelString: 'Time'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        ticks: {
+                            beginAtZero: true,
+                            steps: 1,
+                            stepValue: 1,
+                            max: 3
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'ng/m3'
+                        }
+                    }]
+                },
+                title: {
+                    display: true,
+                    text: 'Line Chart'
+                }
+            }
+
+        });
+
+    }
+    //Call the function finally to draw the chart:
+    drawLineChart();
+
+</script>
 
 
-
+@*This is just scaffolded by asp.net web app, showing the measurements data in tables*@
 <h2>Mercury Measurments In Table format</h2>
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -162,23 +168,24 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateTimeStart)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Hg)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Unit)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Mercury_Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Mercury_Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Mercury_Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTimeStart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hg)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Unit)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Mercury_Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Mercury_Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Mercury_Id })
+            </td>
+        </tr>
+    }
 
 </table>
