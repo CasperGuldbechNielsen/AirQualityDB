@@ -177,7 +177,7 @@
 
         //The function to be fired in case of success
         function onSuccess(response) {
-            $(data).each(function (index, value) {
+            $(response).each(function (index, value) {
                 OzoneValues.push(value.ozone1);
                 DateStamps.push(value.dateTimeStart);
 
