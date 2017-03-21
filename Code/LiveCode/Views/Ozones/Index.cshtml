@@ -140,9 +140,10 @@
 
 <script>
 
-    var Yaxis = [];
-    var Xaxis = [];
-    var secondXaxis = [];
+    var HgValues = [];
+    var OzoneValues = [];
+    var DateStamps = [];
+    
 
     function drawLineChart() {
 
@@ -154,17 +155,12 @@
             cache: true,
             success: function (data) {
                 $(data).each(function (index, value) {
-                    //console.log(value.hg);
-                    //console.log(value.mercury_Id);
-                    //Yaxis.push(parseFloat(value.hg));
-                    //Xaxis.push(new Date(value.dateTimeStart).toString());
-                    //Xaxis.push(parseInt(value.mercury_Id));
-                    Yaxis.push(value.ozone1);
-                    Xaxis.push(value.ozone_Id);
+                    
+                    OzoneValues.push(value.ozone1);
+                    DateStamps.push(value.dateTimeStart);
 
-                });
-                    console.log(Xaxis);
-                    console.log(Yaxis);
+                    });
+                   
                 }
 
             });
@@ -179,7 +175,7 @@
                 cache: true,
                 success: function (data) {
                     $(data).each(function (index, value) {
-                        secondXaxis.push(value.hg);
+                        HgValues.push(value.hg);
                     });
                 }
 
@@ -189,7 +185,7 @@
 
         var tempData = {
 
-            labels: Xaxis,
+            labels: DateStamps,
             datasets: [
                 {
                     label: "Ozone in ppb Units",
@@ -204,8 +200,9 @@
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
                     pointHighlightStroke: "rgba(77, 170, 181, 1)",
+                    yAxisID: 'B',
 
-                    data: Yaxis
+                    data: HgValues
                 },
                 {
                     label: "Mercury in ng/m3 Units",
@@ -220,8 +217,9 @@
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
                     pointHighlightStroke: "rgba(151,187,205,1)",
+                    yAxisID: 'A',
 
-                    data: secondXaxis
+                    data: OzoneValues
                 }
             ]
         };
@@ -262,22 +260,20 @@
                         }
                     }],
                     yAxes: [{
-                        display: true,
-                        ticks: {
-                            beginAtZero: true,
-                            steps: 200,
-                            stepValue: 1,
-                            max: 45
-                        },
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'ppb & ngm3'
+                        id: 'A',
+                        type: 'linear',
+                        position: 'left'
+
+                    }, {
+                            id: 'B',
+                            type: 'linear',
+                            position: 'right',
+                            ticks: {
+                                min: 0,
+                                max: 2
                         }
+                        
                     }]
-                },
-                title: {
-                    display: true,
-                    text: 'Both Values'
                 }
             }
 
