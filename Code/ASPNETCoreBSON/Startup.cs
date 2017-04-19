@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ASPNETCoreBSON.Model;
+using ASPNETCoreBSON.Repository;
 
 namespace ASPNETCoreBSON
 {
@@ -48,7 +49,13 @@ namespace ASPNETCoreBSON
                               .AllowCredentials());
             });
 
-           
+            //http://simpleinjector.readthedocs.io/en/latest/lifetimes.html
+            //good read about this kind of dependency injection
+            services.AddTransient<IMercuriesRepository, MercuriesRepository>()
+                    .AddTransient<IOzonesRepository, OzonesRepository>();
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
