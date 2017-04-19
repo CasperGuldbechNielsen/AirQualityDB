@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using ASPNETCoreBSON.Model;
+using ASPNETCoreBSON.Repository;
+using Newtonsoft.Json.Serialization;
 
 namespace ASPNETCoreBSON
 {
@@ -27,8 +30,33 @@ namespace ASPNETCoreBSON
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Allow any CORS
+            services.AddCors(options => {
+                options.AddPolicy("CorsPolicy",
+            builder => builder.AllowAnyOrigin()
+                              .AllowAnyMethod()
+                              .AllowAnyHeader()
+                              .AllowCredentials());
+            });
+
+            //configure mongo on azure
+            services.Configure<Settings>(options =>
+            {
+                options.ConnectionString = Configuration.GetSection("MongoConnection:ConnectionString").Value;
+                options.Database = Configuration.GetSection("MongoConnection:Database").Value;
+                options.IsSsl = Convert.ToBoolean(Configuration.GetSection("MongoConnection:IsSSL").Value);
+
+            });
+            
             // Add framework services.
-            services.AddMvc();
+            services.AddMvc()
+                    .AddJsonOptions(a => a.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver()); ;
+            
+            //http://simpleinjector.readthedocs.io/en/latest/lifetimes.html
+            //good read about this kind of dependency injection
+            services.AddTransient<IMercuriesRepository, MercuriesRepository>()
+                    .AddTransient<IOzonesRepository, OzonesRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,6 +65,8 @@ namespace ASPNETCoreBSON
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            // Allow any CORS
+            app.UseCors("CorsPolicy");
             app.UseMvc();
         }
     }

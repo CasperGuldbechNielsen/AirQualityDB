@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveCode", "LiveCode\LiveCode.csproj", "{F3B12C6B-4878-41AB-BA3E-D6C5CB760940}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASPNETCOREJSON", "ASPNETCOREJSON\ASPNETCOREJSON.csproj", "{5E4CF208-7E35-4750-B006-9A5ABB1F21C4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASPNETCoreBSON", "ASPNETCoreBSON\ASPNETCoreBSON.csproj", "{1B38599A-98BB-4251-9F83-7D7BA5845799}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{5E4CF208-7E35-4750-B006-9A5ABB1F21C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E4CF208-7E35-4750-B006-9A5ABB1F21C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E4CF208-7E35-4750-B006-9A5ABB1F21C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B38599A-98BB-4251-9F83-7D7BA5845799}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B38599A-98BB-4251-9F83-7D7BA5845799}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B38599A-98BB-4251-9F83-7D7BA5845799}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B38599A-98BB-4251-9F83-7D7BA5845799}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

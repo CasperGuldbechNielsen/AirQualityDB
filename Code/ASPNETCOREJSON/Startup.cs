@@ -60,8 +60,9 @@ namespace ASPNETCOREJSON
                 options => options.UseSqlServer(connection))
                 .AddDbContext<OzonesContext>(
                 options => options.UseSqlServer(connection));
-            
 
+            //http://simpleinjector.readthedocs.io/en/latest/lifetimes.html
+            //good read about this kind of dependency injection
             services.AddSingleton<IMercuriesRepository, MercuriesRepository>();
             services.AddSingleton<IOzonesRepository, OzonesRepository>();
 
