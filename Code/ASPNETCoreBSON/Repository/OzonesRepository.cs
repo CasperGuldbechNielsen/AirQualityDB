@@ -36,7 +36,7 @@ namespace ASPNETCoreBSON.Repository
         {
             try
             {
-                return await _context.Ozones.Find(o => true).ToListAsync();
+                return await _context.Ozones.Find(_ => true).ToListAsync();
             }
             catch (Exception e)
             {
