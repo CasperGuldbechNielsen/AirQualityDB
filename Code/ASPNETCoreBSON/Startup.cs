@@ -46,6 +46,8 @@ namespace ASPNETCoreBSON
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            // Allow any CORS
+            app.UseCors("CorsPolicy");
             app.UseMvc();
         }
     }
