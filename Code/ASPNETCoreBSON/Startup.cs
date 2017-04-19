@@ -35,6 +35,8 @@ namespace ASPNETCoreBSON
             {
                 options.ConnectionString = Configuration.GetSection("MongoConnection:ConnectionString").Value;
                 options.Database = Configuration.GetSection("MongoConnection:Database").Value;
+                options.IsSsl = Convert.ToBoolean(Configuration.GetSection("MongoConnection:IsSSL").Value);
+
             });
 
             // Allow any CORS

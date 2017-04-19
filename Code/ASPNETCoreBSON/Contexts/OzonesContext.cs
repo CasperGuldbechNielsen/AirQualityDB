@@ -14,9 +14,22 @@ namespace ASPNETCoreBSON.Contexts
 
         public OzonesContext(IOptions<Settings> settings)
         {
-            var client = new MongoClient(settings.Value.ConnectionString);
-            if (client != null)
-                _database = client.GetDatabase(settings.Value.Database);
+            try
+            {
+                var client = new MongoClient(settings.Value.ConnectionString);
+                if (settings.Value.IsSsl)
+                {
+                    settings.Value.SslSettings = new SslSettings { EnabledSslProtocols = System.Security.Authentication.SslProtocols.Tls12 };
+                }
+                if (client != null)
+                    _database = client.GetDatabase(settings.Value.Database);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Can not access to db server.", e);
+            }
+
+
         }
 
         public IMongoCollection<Ozone> Ozones
