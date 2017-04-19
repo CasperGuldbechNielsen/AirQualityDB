@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ASPNETCoreBSON.Model;
+using MongoDB.Driver;
 
 namespace ASPNETCoreBSON.Repository
 {
     interface IOzonesRepository
     {
-        void Add(Ozone ozoneEntry);
-        IEnumerable<Ozone> GetAll();
-        Ozone Find(string id);
-        void Remove(string id);
-        void Update(Ozone ozoneEntry);
+        Task Add(Ozone ozoneEntry);
+        Task<IEnumerable<Ozone>> GetAll();
+        Task<Ozone> Find(string id);
+        Task<DeleteResult> Remove(string id);
+        Task<UpdateResult> Update(Ozone ozoneEntry);
     }
 }

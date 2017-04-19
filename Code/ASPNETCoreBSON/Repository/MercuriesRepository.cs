@@ -3,32 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ASPNETCoreBSON.Model;
+using MongoDB.Driver;
 
 namespace ASPNETCoreBSON.Repository
 {
     public class MercuriesRepository : IMercuriesRepository
     {
-        public void Add(Mercury mercuryEntry)
+        public async Task Add(Mercury mercuryEntry)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Mercury> GetAll()
+        public async Task<IEnumerable<Mercury>> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public Mercury Find(string id)
+        public async Task<Mercury> Find(string id)
         {
             throw new NotImplementedException();
         }
 
-        public void Remove(string id)
+        public async Task<DeleteResult> Remove(string id)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Mercury mercuryEntry)
+        public async Task<UpdateResult> Update(Mercury mercuryEntry)
         {
             throw new NotImplementedException();
         }
