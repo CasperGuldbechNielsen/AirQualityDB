@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ASPNETCoreBSON.Controllers
 {
+    
     [Route("api/[controller]")]
     public class MercuriesController : Controller
     {

@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ASPNETCoreBSON.Controllers
 {
+
     [Route("api/[controller]")]
     public class OzonesController : Controller
     {
@@ -49,8 +50,9 @@ namespace ASPNETCoreBSON.Controllers
         [HttpPost]
         public void Post([FromBody]Ozone value)
         {
-            //Guid g = Guid.NewGuid();
-            //_ozonesRepository.Add(new Ozone() {_id = g.ToString(), DateTimeStart = DateTime.Now, Ozone1 = value, Unit = "ppb"});
+            //var g = MongoDB.Bson.ObjectId.GenerateNewId().ToString();
+            //_ozonesRepository.Add(new Ozone() { _id = g, DateTimeStart = DateTime.Now, Ozone1 = value, Unit = "ppb" });
+
             _ozonesRepository.Add(value);
         }
 
