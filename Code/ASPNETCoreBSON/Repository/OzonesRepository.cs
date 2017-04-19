@@ -20,23 +20,56 @@ namespace ASPNETCoreBSON.Repository
 
         public async Task Add(Ozone ozoneEntry)
         {
-            await _context.Ozones.InsertOneAsync(ozoneEntry);
+            try
+            {
+                await _context.Ozones.InsertOneAsync(ozoneEntry);
+            }
+            catch (Exception e)
+            {
+                
+                throw new Exception("Error during adding Ozone using MongoDB\n" + e.Message);
+            }
+            
         }
 
         public async Task<IEnumerable<Ozone>> GetAll()
         {
-            return await _context.Ozones.Find(_ => true).ToListAsync();
+            try
+            {
+                return await _context.Ozones.Find(_ => true).ToListAsync();
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error during getting Ozone using MongoDB\n" + e.Message);
+            }
+           
         }
 
         public async Task<Ozone> Find(string id)
         {
             var filter = Builders<Ozone>.Filter.Eq("_id", id);
-            return await _context.Ozones.Find(filter).FirstOrDefaultAsync();
+            try
+            {
+                return await _context.Ozones.Find(filter).FirstOrDefaultAsync();
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error during finding Ozone using MongoDB\n" +e.Message);
+            }
+            
         }
 
         public async Task<DeleteResult> Remove(string id)
         {
-            return await _context.Ozones.DeleteOneAsync(Builders<Ozone>.Filter.Eq("_id", id));
+            try
+            {
+                return await _context.Ozones.DeleteOneAsync(Builders<Ozone>.Filter.Eq("_id", id));
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error during removing Ozone using MongoDB\n" + e.Message);
+            }
+            
         }
 
         public async Task<UpdateResult> Update(Ozone ozoneEntry)
@@ -47,7 +80,16 @@ namespace ASPNETCoreBSON.Repository
             //update or correct measurements
             var update = Builders<Ozone>.Update.Set(x => x.Ozone1, ozoneEntry.Ozone1);
 
-            return await _context.Ozones.UpdateOneAsync(filter, update);
+            try
+            {
+                return await _context.Ozones.UpdateOneAsync(filter, update);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error during updating Ozone using MongoDB\n" + e.Message);
+            }
+
+            
         }
     }
 }

@@ -20,23 +20,55 @@ namespace ASPNETCoreBSON.Repository
 
         public async Task Add(Mercury mercuryEntry)
         {
-            await _context.Mercuries.InsertOneAsync(mercuryEntry);
+            try
+            {
+                await _context.Mercuries.InsertOneAsync(mercuryEntry);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error during adding Mercury to MongoDB\n" + e.Message);
+            }
+            
         }
 
         public async Task<IEnumerable<Mercury>> GetAll()
         {
-            return await _context.Mercuries.Find(_ => true).ToListAsync();
+            try
+            {
+                return await _context.Mercuries.Find(_ => true).ToListAsync();
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error during getting Mercury using MongoDB\n" + e.Message);
+            }
+            
         }
 
         public async Task<Mercury> Find(string id)
         {
             var filter = Builders<Mercury>.Filter.Eq("_id", id);
-            return await _context.Mercuries.Find(filter).FirstOrDefaultAsync();
+            try
+            {
+                return await _context.Mercuries.Find(filter).FirstOrDefaultAsync();
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error during finding Mercury using MongoDB\n" + e.Message);
+            }
+            
         }
 
         public async Task<DeleteResult> Remove(string id)
         {
-            return await _context.Mercuries.DeleteOneAsync(Builders<Mercury>.Filter.Eq("_id", id));
+            try
+            {
+                return await _context.Mercuries.DeleteOneAsync(Builders<Mercury>.Filter.Eq("_id", id));
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error during removing Mercury using MongoDB\n" + e.Message);
+            }
+            
         }
 
         public async Task<UpdateResult> Update(Mercury mercuryEntry)
@@ -47,7 +79,16 @@ namespace ASPNETCoreBSON.Repository
             //update or correct the measurements
             var update = Builders<Mercury>.Update.Set(x => x.Hg, mercuryEntry.Hg);
 
-            return await _context.Mercuries.UpdateOneAsync(filter, update);
+            try
+            {
+                return await _context.Mercuries.UpdateOneAsync(filter, update);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error during updating Mercury using MongoDB\n" + e.Message);
+            }
+
+            
         }
     }
 }

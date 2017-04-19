@@ -9,7 +9,7 @@ namespace ASPNETCoreBSON.Model
     public class Mercury
     {
         [BsonId]
-        public int _id { get; set; }
+        public string _id { get; set; }
         public DateTime DateTimeStart { get; set; }
         public double? Hg { get; set; }
         public string unit { get; set; }

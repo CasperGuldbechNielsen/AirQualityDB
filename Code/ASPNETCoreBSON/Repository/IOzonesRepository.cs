@@ -7,7 +7,7 @@ using MongoDB.Driver;
 
 namespace ASPNETCoreBSON.Repository
 {
-    interface IOzonesRepository
+    public interface IOzonesRepository
     {
         Task Add(Ozone ozoneEntry);
         Task<IEnumerable<Ozone>> GetAll();

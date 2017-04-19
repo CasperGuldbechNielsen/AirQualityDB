@@ -7,7 +7,7 @@ using MongoDB.Driver;
 
 namespace ASPNETCoreBSON.Repository
 {
-    interface IMercuriesRepository
+    public interface IMercuriesRepository
     {
         Task Add(Mercury mercuryEntry);
         Task<IEnumerable<Mercury>> GetAll();
