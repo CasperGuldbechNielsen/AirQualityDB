@@ -9,10 +9,10 @@ namespace ASPNETCoreBSON.Repository
 {
     public interface IOzonesRepository
     {
-        Task Add(Ozone ozoneEntry);
-        Task<IEnumerable<Ozone>> GetAll();
-        Task<Ozone> Find(string id);
+        Task Add(Ozzone ozzoneEntry);
+        Task<IEnumerable<Ozzone>> GetAll();
+        Task<Ozzone> Find(string id);
         Task<DeleteResult> Remove(string id);
-        Task<UpdateResult> Update(Ozone ozoneEntry);
+        Task<UpdateResult> Update(Ozzone ozzoneEntry);
     }
 }

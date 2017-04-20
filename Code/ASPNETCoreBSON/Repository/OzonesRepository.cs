@@ -18,21 +18,21 @@ namespace ASPNETCoreBSON.Repository
             _context = new OzonesContext(settings);
         }
 
-        public async Task Add(Ozone ozoneEntry)
+        public async Task Add(Ozzone ozzoneEntry)
         {
             try
             {
-                await _context.Ozones.InsertOneAsync(ozoneEntry);
+                await _context.Ozones.InsertOneAsync(ozzoneEntry);
             }
             catch (Exception e)
             {
                 
-                throw new Exception("Error during adding Ozone using MongoDB\n" + e.Message);
+                throw new Exception("Error during adding Ozzone using MongoDB\n" + e.Message);
             }
             
         }
 
-        public async Task<IEnumerable<Ozone>> GetAll()
+        public async Task<IEnumerable<Ozzone>> GetAll()
         {
             try
             {
@@ -40,21 +40,21 @@ namespace ASPNETCoreBSON.Repository
             }
             catch (Exception e)
             {
-                throw new Exception("Error during getting Ozone using MongoDB\n" + e.Message);
+                throw new Exception("Error during getting Ozzone using MongoDB\n" + e.Message);
             }
            
         }
 
-        public async Task<Ozone> Find(string id)
+        public async Task<Ozzone> Find(string id)
         {
-            var filter = Builders<Ozone>.Filter.Eq("_id", id);
+            var filter = Builders<Ozzone>.Filter.Eq("_id", id);
             try
             {
                 return await _context.Ozones.Find(filter).FirstOrDefaultAsync();
             }
             catch (Exception e)
             {
-                throw new Exception("Error during finding Ozone using MongoDB\n" +e.Message);
+                throw new Exception("Error during finding Ozzone using MongoDB\n" +e.Message);
             }
             
         }
@@ -63,22 +63,22 @@ namespace ASPNETCoreBSON.Repository
         {
             try
             {
-                return await _context.Ozones.DeleteOneAsync(Builders<Ozone>.Filter.Eq("_id", id));
+                return await _context.Ozones.DeleteOneAsync(Builders<Ozzone>.Filter.Eq("_id", id));
             }
             catch (Exception e)
             {
-                throw new Exception("Error during removing Ozone using MongoDB\n" + e.Message);
+                throw new Exception("Error during removing Ozzone using MongoDB\n" + e.Message);
             }
             
         }
 
-        public async Task<UpdateResult> Update(Ozone ozoneEntry)
+        public async Task<UpdateResult> Update(Ozzone ozzoneEntry)
         {
             //in reality this is the closest case study I would imagine:
             //filter by the time it was taken
-            var filter = Builders<Ozone>.Filter.Eq(x => x.DateTimeStart, ozoneEntry.DateTimeStart);
+            var filter = Builders<Ozzone>.Filter.Eq(x => x.DateTimeStart, ozzoneEntry.DateTimeStart);
             //update or correct measurements
-            var update = Builders<Ozone>.Update.Set(x => x.Ozone1, ozoneEntry.Ozone1);
+            var update = Builders<Ozzone>.Update.Set(x => x.Ozone, ozzoneEntry.Ozone);
 
             try
             {
@@ -86,7 +86,7 @@ namespace ASPNETCoreBSON.Repository
             }
             catch (Exception e)
             {
-                throw new Exception("Error during updating Ozone using MongoDB\n" + e.Message);
+                throw new Exception("Error during updating Ozzone using MongoDB\n" + e.Message);
             }
 
             

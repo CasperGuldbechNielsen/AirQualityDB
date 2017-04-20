@@ -26,7 +26,7 @@ namespace ASPNETCoreBSON.Contexts
             }
             catch (Exception e)
             {
-                throw new Exception("Can not access to db server.", e);
+                throw new Exception("Can not access to db server." + e.Message);
             }
 
 
