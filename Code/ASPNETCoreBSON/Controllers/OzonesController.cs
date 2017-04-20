@@ -24,41 +24,41 @@ namespace ASPNETCoreBSON.Controllers
         
         [NoCache]
         [HttpGet]
-        public Task<IEnumerable<Ozone>> Get()
+        public Task<IEnumerable<Ozzone>> Get()
         {
             return GetOzoneInternal();
         }
 
-        private async Task<IEnumerable<Ozone>> GetOzoneInternal()
+        private async Task<IEnumerable<Ozzone>> GetOzoneInternal()
         {
             return await _ozonesRepository.GetAll();
         }
 
         // GET api/ozones/5
         [HttpGet("{id}")]
-        public Task<Ozone> Get(string id)
+        public Task<Ozzone> Get(string id)
         {
             return GetOzoneByIdInternal(id);
         }
 
-        private async Task<Ozone> GetOzoneByIdInternal(string id)
+        private async Task<Ozzone> GetOzoneByIdInternal(string id)
         {
             return await _ozonesRepository.Find(id);
         }
 
         // POST api/ozones
         [HttpPost]
-        public void Post([FromBody]Ozone value)
+        public void Post([FromBody]Ozzone value)
         {
             //var g = MongoDB.Bson.ObjectId.GenerateNewId().ToString();
-            //_ozonesRepository.Add(new Ozone() { _id = g, DateTimeStart = DateTime.Now, Ozone1 = value, Unit = "ppb" });
+            //_ozonesRepository.Add(new Ozzone() { _id = g, DateTimeStart = DateTime.Now, Ozzone = value, Unit = "ppb" });
 
             _ozonesRepository.Add(value);
         }
 
         // PUT api/ozones/5
         [HttpPut("{id}")]
-        public void Put([FromBody] Ozone value)
+        public void Put([FromBody] Ozzone value)
         {
             _ozonesRepository.Update(value);
         }

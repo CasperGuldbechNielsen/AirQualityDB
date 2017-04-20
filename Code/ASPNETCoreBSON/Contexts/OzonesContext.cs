@@ -26,15 +26,15 @@ namespace ASPNETCoreBSON.Contexts
             }
             catch (Exception e)
             {
-                throw new Exception("Can not access to db server.", e);
+                throw new Exception("Can not access to db server." + e.Message);
             }
 
 
         }
 
-        public IMongoCollection<Ozone> Ozones
+        public IMongoCollection<Ozzone> Ozones
         {
-            get { return _database.GetCollection<Ozone>("ozoneCollection"); }
+            get { return _database.GetCollection<Ozzone>("ozoneCollection"); }
         }
     }
 }

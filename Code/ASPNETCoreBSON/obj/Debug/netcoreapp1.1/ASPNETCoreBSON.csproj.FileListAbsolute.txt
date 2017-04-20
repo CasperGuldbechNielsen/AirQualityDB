@@ -6,4 +6,3 @@ E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\ASPNETCoreBSON\bin\Debug\netco
 E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\ASPNETCoreBSON\obj\Debug\netcoreapp1.1\ASPNETCoreBSON.AssemblyInfo.cs
 E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\ASPNETCoreBSON\obj\Debug\netcoreapp1.1\ASPNETCoreBSON.dll
 E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\ASPNETCoreBSON\obj\Debug\netcoreapp1.1\ASPNETCoreBSON.pdb
-E:\ZIBAT\4th sem\Databases\livecode\LiveCode\Code\ASPNETCoreBSON\obj\Debug\netcoreapp1.1\ASPNETCoreBSON.csprojResolveAssemblyReference.cache
